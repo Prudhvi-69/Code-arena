@@ -96,6 +96,8 @@ The H2 database is file-based and persists at `backend/data/codearena.mv.db`. On
 > - JDBC URL: `jdbc:h2:file:./data/codearena;AUTO_SERVER=TRUE`
 > - Username: `sa`
 > - Password: *(leave blank)*
+>
+> ⚠️ **Important:** When the H2 console opens, it pre-fills an in-memory URL. You **must replace it** with the file URL above to see your persistent data.
 
 ### 3. Start the Frontend
 
@@ -333,8 +335,12 @@ Code is executed server-side via `POST /api/execute`. Each language has a differ
 spring.datasource.url=jdbc:h2:file:./data/codearena;AUTO_SERVER=TRUE
 
 # H2 web console (dev only)
+# Access at: http://localhost:8080/h2-console
+# JDBC URL to enter: jdbc:h2:file:./data/codearena;AUTO_SERVER=TRUE
+# Username: sa  |  Password: (blank)
 spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
+spring.h2.console.settings.web-allow-others=false
 
 # Run schema.sql + data.sql on every startup (safe — uses IF NOT EXISTS + MERGE)
 spring.sql.init.mode=always
